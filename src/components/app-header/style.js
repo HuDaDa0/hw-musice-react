@@ -23,12 +23,12 @@ export const HeaderWrapper = styled.div`
         li {
           position: relative;
           line-height: 70px;
-          padding: 0 19px;
 
           a {
             display: block;
             width: 100%;
             height: 100%;
+            padding: 0 19px;
           }
 
           :last-of-type a {
@@ -41,7 +41,7 @@ export const HeaderWrapper = styled.div`
               background-image: url(${sprite_01});
               background-position: -190px 0;
               top: 20px;
-              right: -40px;
+              right: -15px;
             }
           }
           .icon {
