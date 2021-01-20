@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import sprite_01 from "@/assets/img/sprite_01.png"
 export const HeaderWrapper = styled.div`
   background-color: #242424;
 
@@ -21,8 +21,39 @@ export const HeaderWrapper = styled.div`
         display: flex;
         font-size: 14px;
         li {
+          position: relative;
           line-height: 70px;
           padding: 0 19px;
+
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
+          }
+
+          :last-of-type a {
+            position: relative;
+            ::after {
+              position: absolute;
+              content: " ";
+              width: 28px;
+              height: 19px;
+              background-image: url(${sprite_01});
+              background-position: -190px 0;
+              top: 20px;
+              right: -40px;
+            }
+          }
+          .icon {
+            position: absolute;
+            display: inline-block;
+            width: 12px;
+            height: 7px;
+            bottom: -1px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            background-position: -226px 0;
+          }
           &:hover {
             background-color: #000;
           }

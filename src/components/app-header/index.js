@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 
@@ -7,14 +7,15 @@ import { HeaderWrapper } from './style'
 import { headerLinks } from '@/common/local-data'
 
 
-function AppHeader() {
-
+function AppHeader(props) {
+  console.log(props, 'props')
+  const { pathname } = props.location
   const showSelectItem = (item, index) => {
     if (index < 3) {
       return (
         <NavLink to={ item.link }>
           { item.title }
-          <i className="sprite_01 icon"></i>
+          { pathname === item.link && <i className="sprite_01 icon"></i> }
         </NavLink>
       )
     }
@@ -48,4 +49,4 @@ function AppHeader() {
 }
 
 
-export default memo(AppHeader)
+export default withRouter(memo(AppHeader))
