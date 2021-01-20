@@ -14,7 +14,7 @@ function AppHeader(props) {
       return (
         <NavLink to={ item.link }>
           { item.title }
-          { pathname === item.link && <i className="sprite_01 icon"></i> }
+          { pathname.includes(item.link) && <i className="sprite_01 icon"></i> }
         </NavLink>
       )
     }
@@ -42,7 +42,7 @@ function AppHeader(props) {
           <span className="login">登录</span>
         </div>
       </div>
-      <div className="divide"></div>
+      <div className={ pathname.includes('/discover') ? '' : 'divide'}></div>
     </HeaderWrapper>
   )
 }
