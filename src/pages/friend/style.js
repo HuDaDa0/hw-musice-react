@@ -25,9 +25,9 @@ export const FriendWrapper = styled.div`
   }
 
   .login-btn {
-    width: 157px;
-    height: 48px;
-    margin: 36px 0 0 557px;
+    width: 158px;
+    height: 49px;
+    margin: 38px 0 0 557px;
     background: url('https://s2.music.126.net/style/web2/img/notlogin.jpg?a14ce4a784fdb2576bb99f75c293f49c') no-repeat center 0;
     background-position: 0 9999px;
     &:hover {
