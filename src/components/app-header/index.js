@@ -8,7 +8,6 @@ import { headerLinks } from '@/common/local-data'
 
 
 function AppHeader(props) {
-  console.log(props, 'props')
   const { pathname } = props.location
   const showSelectItem = (item, index) => {
     if (index < 3) {
