@@ -1,16 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
-import App from './App'
+import { Provider } from 'react-redux'
 
+import App from './App'
+import store from '@/store'
 
 import 'antd/dist/antd.css'
 import '@/assets/css/reset.css'
 
 
 ReactDOM.render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+  <Provider store={store}>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </Provider>,
   document.getElementById('root')
 )
