@@ -1,16 +1,15 @@
 import React, { memo, useEffect } from 'react'
-// import { connect } from 'react-redux'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import { getTopBannerAction } from './store/actionCreators'
 
 function Recomend() {
-  // const { getBanners, topBanners } = props
+  // shallowEqual 进行浅层比较
   const { topBanners } = useSelector(state => {
     return {
       topBanners: state.recommend.topBanners
     }
-  })
+  }, shallowEqual)
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -23,20 +22,3 @@ function Recomend() {
 }
 
 export default memo(Recomend)
-
-// const mapStateToProps = (state) => {
-//   return {
-//     topBanners: state.recommend.topBanners
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getBanners: () => {
-//       dispatch(getTopBannerAction())
-//     }
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(memo(Recomend))
-
