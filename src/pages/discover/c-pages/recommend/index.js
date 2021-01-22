@@ -7,7 +7,9 @@ function Recomend() {
   // shallowEqual 进行浅层比较
   const { topBanners } = useSelector(state => {
     return {
-      topBanners: state.recommend.topBanners
+      // topBanners: state.get('recommend').get('topBanners'),
+      // getIn 是可迭代的，和上面的操作效果一样
+      topBanners: state.getIn(['recommend', 'topBanners'])
     }
   }, shallowEqual)
 
@@ -17,7 +19,7 @@ function Recomend() {
   }, [dispatch])
 
   return (
-    <div>Recomend</div>
+    <div>Recomend: {topBanners.length}</div>
   )
 }
 
