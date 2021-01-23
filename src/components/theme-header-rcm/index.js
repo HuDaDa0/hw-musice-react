@@ -1,4 +1,5 @@
 import React, { Fragment, memo } from 'react'
+import PropTypes from 'prop-types'
 
 import { ThemeHeaderRcmWrapper } from './style'
 
@@ -30,5 +31,14 @@ function HotRecommend(props) {
   )
 }
 
+HotRecommend.propTypes = {
+  title: PropTypes.string.isRequired,
+  tab: PropTypes.array
+}
+
+HotRecommend.defaultProps = {
+  title: '热门推荐',
+  tab: () => []
+}
 
 export default memo(HotRecommend)
