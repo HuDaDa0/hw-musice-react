@@ -1,24 +1,36 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import ThemeHeaderRcm from '@/components/theme-header-rcm'
 import SongsCover from '@/components/songs-cover'
 import { HotRecommendWrapper } from './style'
 
+import { getHotRecommendsAction } from '../../store/actionCreators'
+
+
 function HotRecommend() {
+
+  const { hotRecommed } = useSelector(state => {
+    return {
+      hotRecommed: state.getIn(['recommend', 'hotRecommend'])
+    }
+  })
+  const dispatch = useDispatch()
+  console.log(hotRecommed, 'hotRecommed')
+  useEffect(() => {
+    dispatch(getHotRecommendsAction(8))
+  }, [dispatch])
 
   return (
     <HotRecommendWrapper>
       <div className="hot-rec-left">
         <ThemeHeaderRcm title="热门推荐" tab={['华语', '流行', '摇滚', '民谣', '电子']} />
         <div className="song-list">
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
-          <SongsCover className="song-item" />
+          {
+            hotRecommed.map(item => {
+              return <SongsCover key={item.id} className="song-item" />
+            })
+          }
         </div>
 
         <ThemeHeaderRcm title="新碟上架" />
