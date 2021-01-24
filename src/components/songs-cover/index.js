@@ -3,10 +3,10 @@ import React, { memo } from 'react'
 import { SongCoverWrapper } from './stlye'
 
 
-function SongsCover() {
-
+function SongsCover(props) {
+  const { className } = props
   return (
-    <SongCoverWrapper>
+    <SongCoverWrapper className={className}>
       <div className="u-cover">
         <img src="http://p2.music.126.net/A_DazNo88O6C0R6knvCtVA==/109951165529221838.jpg?param=140y140" alt=""/>
         <a className="msk" href="javascript">hahah</a>

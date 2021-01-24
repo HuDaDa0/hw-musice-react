@@ -38,7 +38,7 @@ HotRecommend.propTypes = {
 
 HotRecommend.defaultProps = {
   title: '热门推荐',
-  tab: () => []
+  tab: []
 }
 
 export default memo(HotRecommend)
