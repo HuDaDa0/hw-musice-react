@@ -16,7 +16,7 @@ function HotRecommend() {
     }
   })
   const dispatch = useDispatch()
-  console.log(hotRecommed, 'hotRecommed')
+
   useEffect(() => {
     dispatch(getHotRecommendsAction(8))
   }, [dispatch])
@@ -28,7 +28,15 @@ function HotRecommend() {
         <div className="song-list">
           {
             hotRecommed.map(item => {
-              return <SongsCover key={item.id} className="song-item" />
+              return (
+                <SongsCover 
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  picUrl={item.picUrl}
+                  playCount={item.playCount}
+                  className="song-item" />
+              )
             })
           }
         </div>
