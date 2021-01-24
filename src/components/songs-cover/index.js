@@ -27,7 +27,7 @@ function SongsCover(props) {
 }
 
 SongsCover.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   picUrl: PropTypes.string.isRequired,
   playCount: PropTypes.number.isRequired
