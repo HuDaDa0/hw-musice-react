@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import TopBanner from './c-cpns/top-banner'
 import HotRecommend from './c-cpns/hot-recommend'
 import NewAlbum from './c-cpns/new-album'
-import ThemeHeaderRcm from '@/components/theme-header-rcm'
+import RecommendRanking from './c-cpns/recommend-ranking'
 
 import { RecommendWrapper, RecommendWrapperLeft } from './style'
 
@@ -15,7 +15,7 @@ function Recomend() {
         <RecommendWrapperLeft>
           <HotRecommend />
           <NewAlbum />
-          <ThemeHeaderRcm title="榜单" />
+          <RecommendRanking />
         </RecommendWrapperLeft>
 
       </RecommendWrapper>
