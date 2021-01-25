@@ -12,7 +12,7 @@ export const NewAlbumWrapper = styled.div`
     background: #f5f5f5;
 
     .album-banner {
-      display: flex;
+      display: flex !important;
       width: 645px;
       height: 150px;
       margin-top: 28px;
