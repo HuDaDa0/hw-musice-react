@@ -10,12 +10,17 @@ export const NewAlbumWrapper = styled.div`
     margin: 20px 0 37px;
     border: 1px solid #d3d3d3;
     background: #f5f5f5;
+    
+    .ablum-list {
+      width: 645px;
+      height: 150px;
+      margin-top: 28px;
+    }
 
     .album-banner {
       display: flex !important;
       width: 645px;
       height: 150px;
-      margin-top: 28px;
     }
     .btn {
       width: 16px;
