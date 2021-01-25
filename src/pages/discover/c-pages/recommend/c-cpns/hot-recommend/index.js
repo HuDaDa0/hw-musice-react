@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import ThemeHeaderRcm from '@/components/theme-header-rcm'
 import SongsCover from '@/components/songs-cover'
@@ -14,7 +14,7 @@ function HotRecommend() {
     return {
       hotRecommed: state.getIn(['recommend', 'hotRecommend'])
     }
-  })
+  }, shallowEqual)
   const dispatch = useDispatch()
 
   useEffect(() => {
