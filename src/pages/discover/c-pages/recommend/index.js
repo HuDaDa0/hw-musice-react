@@ -2,15 +2,23 @@ import React, { memo } from 'react'
 
 import TopBanner from './c-cpns/top-banner'
 import HotRecommend from './c-cpns/hot-recommend'
+import ThemeHeaderRcm from '@/components/theme-header-rcm'
+
+import { RecommendWrapper, RecommendWrapperLeft } from './style'
 
 function Recomend() {
   return (
     <div>
       <TopBanner />
-      <div className="wrap-v2">
-        <HotRecommend />
+      <RecommendWrapper className="wrap-v2">
+        <RecommendWrapperLeft>
+          <HotRecommend />
 
-      </div>
+          <ThemeHeaderRcm title="新碟上架" />
+          <ThemeHeaderRcm title="榜单" />
+        </RecommendWrapperLeft>
+
+      </RecommendWrapper>
     </div>
   )
 }

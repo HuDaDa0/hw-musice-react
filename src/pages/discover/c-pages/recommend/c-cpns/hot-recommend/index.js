@@ -23,26 +23,21 @@ function HotRecommend() {
 
   return (
     <HotRecommendWrapper>
-      <div className="hot-rec-left">
-        <ThemeHeaderRcm title="热门推荐" tab={['华语', '流行', '摇滚', '民谣', '电子']} />
-        <div className="song-list">
-          {
-            hotRecommed.map(item => {
-              return (
-                <SongsCover 
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  picUrl={item.picUrl}
-                  playCount={item.playCount}
-                  className="song-item" />
-              )
-            })
-          }
-        </div>
-
-        <ThemeHeaderRcm title="新碟上架" />
-        <ThemeHeaderRcm title="榜单" />
+      <ThemeHeaderRcm title="热门推荐" tab={['华语', '流行', '摇滚', '民谣', '电子']} />
+      <div className="song-list">
+        {
+          hotRecommed.map(item => {
+            return (
+              <SongsCover 
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                picUrl={item.picUrl}
+                playCount={item.playCount}
+                className="song-item" />
+            )
+          })
+        }
       </div>
     </HotRecommendWrapper>
   )
