@@ -111,6 +111,17 @@ export const TopRankingWrapper = styled.div`
         }
       }
     }
+    .more {
+      height: 32px;
+      line-height: 32px;
+      text-align: right;
+      padding-right: 32px;
+      cursor: pointer;
+      
+      a {
+        color: #000;
+      }
+    }
 
   }
 

@@ -18,7 +18,6 @@ function RecommendRanking() {
   }, shallowEqual)
 
   const dispatch = useDispatch()
-  console.log(upRanking, newRanking, originRanking)
   useEffect(() => {
     // 0 新歌榜
     // 2 原创榜
@@ -27,6 +26,7 @@ function RecommendRanking() {
     dispatch(getTopListAction(2))
     dispatch(getTopListAction(3))
   }, [dispatch])
+  
   return (
     <RecommendRankingWrapper>
       <ThemeHeaderRcm title="榜单" />

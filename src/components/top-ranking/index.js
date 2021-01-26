@@ -26,7 +26,7 @@ function TopRanking(props) {
         {
           tracks.slice(0, 10).map((item, index) => {
             return (
-              <li className="song-item">
+              <li key={item.id} className="song-item">
                 <span>
                   <span className="num">{index + 1}</span>
                   <span className="song-name">{item.name}</span>
@@ -40,6 +40,9 @@ function TopRanking(props) {
             )
           })
         }
+        <li className="more">
+          <a href={`https://music.163.com/#/discover/toplist?id=${id}`}>查看全部&gt;</a>
+        </li>
       </ul>
     </TopRankingWrapper>
   )
@@ -50,6 +53,13 @@ TopRanking.propTypes = {
   name: PropTypes.string.isRequired,
   coverImgUrl: PropTypes.string.isRequired,
   tracks: PropTypes.array.isRequired
+}
+
+TopRanking.defaultProps = {
+  id: 0,
+  name: '',
+  coverImgUrl: '',
+  tracks: (() => [])()
 }
 
 export default memo(TopRanking)
