@@ -1,12 +1,28 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import { Slider } from 'antd'
 import { PlaybarWrapper } from './style'
 
+import { getSongDetailAction } from '../store/actionCreators'
+
 
 function AppPlayBar() {
-  
+
+  const { currentSong } = useSelector((state) => {
+    return {
+      currentSong: state.getIn(['player', 'currentSong'])
+    }
+  }, shallowEqual)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getSongDetailAction(1496822949))
+  }, [dispatch])
+
+  console.log(currentSong)
+
   return (
     <PlaybarWrapper className="sprite_player" isPlaying={true}>
       <div className="content wrap-v2">
@@ -18,13 +34,13 @@ function AppPlayBar() {
         <div className="play-info">
           <div className="image">
             <NavLink to="/discover/player">
-              <img src="https://p2.music.126.net/m4zo-ZytE82l_Mdw3tUrQA==/109951165483970109.jpg?param=34y34" alt=""/>
+              <img src={currentSong.al && currentSong.al.picUrl + '?param=34y34'} alt=""/>
             </NavLink>
           </div>
           <div className="info">
             <div className="song">
-              <span className="song-name">xxx</span>
-              <a href="#/" className="singer-name">xxx</a>
+              <span className="song-name">{currentSong.name}</span>
+              <a href="#/" className="singer-name">{currentSong.ar && currentSong.ar[0].name}</a>
             </div>
             <div className="progress">
               <Slider defaultValue={30} />
