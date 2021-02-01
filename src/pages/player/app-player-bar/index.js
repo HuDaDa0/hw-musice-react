@@ -5,7 +5,7 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { Slider } from 'antd'
 import { PlaybarWrapper } from './style'
 
-import { getSongDetailAction } from '../store/actionCreators'
+import { getSongDetailAction, changeSequence } from '../store/actionCreators'
 import { formatMinuteSecond, getPlaySong } from '@/utils/format-utils'
 
 
@@ -16,10 +16,11 @@ function AppPlayBar() {
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
 
-  const { currentSong, playList } = useSelector((state) => {
+  const { currentSong, sequence, playList } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
-      playList: state.getIn(['player', 'playList'])
+      playList: state.getIn(['player', 'playList']),
+      sequence: state.getIn(['player', 'sequence'])
     }
   }, shallowEqual)
   const dispatch = useDispatch()
@@ -76,9 +77,17 @@ function AppPlayBar() {
     }
   }, [duration, isPlaying, playMusic])
 
+  const handleChangeSequence = useCallback(() => {
+    // sequence = 0, 1, 2
+    let newSequence = sequence + 1
+    if (newSequence === 3) {
+      newSequence = 0
+    }
+    dispatch(changeSequence(newSequence))
+  }, [sequence, dispatch])
 
   return (
-    <PlaybarWrapper className="sprite_player" isPlaying={isPlaying}>
+    <PlaybarWrapper className="sprite_player" isPlaying={isPlaying} sequence={sequence}>
       <div className="content wrap-v2">
         <div className="control-box">
           <button className="sprite_player prev"></button>
@@ -119,7 +128,7 @@ function AppPlayBar() {
           </div>
           <div className="right sprite_player">
             <button className="sprite_player btn volume"></button>
-            <button className="sprite_player btn loop"></button>
+            <button className="sprite_player btn loop" onClick={ handleChangeSequence }></button>
             <button className="sprite_player btn playlist"></button>
           </div>
         </div>

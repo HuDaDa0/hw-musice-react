@@ -1,4 +1,9 @@
-import { CHANGE_CURRENT_SONG, CHANGE_PLAY_LIST, CHANGE_CURRENT_SONG_INDEX } from './constants'
+import { 
+  CHANGE_CURRENT_SONG, 
+  CHANGE_PLAY_LIST, 
+  CHANGE_CURRENT_SONG_INDEX, 
+  CHANGE_SEQUENCE 
+} from './constants'
 import { getSongDetail } from '@/services/player'
 
 
@@ -22,6 +27,13 @@ const changeCurrentSongIndexAction = (index) => {
     data: index
   }
 }
+
+export const changeSequence = (index) => {
+  return {
+    type: CHANGE_SEQUENCE,
+    data: index
+  }
+} 
 
 
 export const getSongDetailAction = (ids) => {
