@@ -54,6 +54,7 @@ export const PlaybarWrapper = styled.div`
         width: 34px;
         height: 34px;
         border-radius: 5px;
+        overflow: hidden;
       }
       .info {
         flex: 1;
