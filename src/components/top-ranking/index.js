@@ -42,7 +42,7 @@ function TopRanking(props) {
                   <span className="song-name">{item.name}</span>
                 </span>
                 <div className="operate">
-                  <span className="btn sprite_02 play" onClick={ e => playMusic(1496833377) }></span>
+                  <span className="btn sprite_02 play" onClick={ e => playMusic(id) }></span>
                   <button className="btn sprite_icon2 addto"></button>
                   <button className="btn sprite_02 favor"></button>
                 </div>

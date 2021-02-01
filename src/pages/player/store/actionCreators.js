@@ -33,7 +33,33 @@ export const changeSequence = (index) => {
     type: CHANGE_SEQUENCE,
     data: index
   }
-} 
+}
+
+export const changeCurrentIndexAndSongAction = (tag) => {
+  return (dispatch, getState) => {
+    const playList = getState().getIn(['player', 'playList'])
+    let currentSongIndex = getState().getIn(['player', 'currentSongIndex'])
+    const sequence = getState().getIn(['player', 'sequence'])
+
+    // sequence  0 顺序    1 随机   2 单曲   
+    switch (sequence) {
+      case 1:
+        let randomIndex = Math.floor(Math.random() * playList.length)
+        while (randomIndex === currentSongIndex) {
+          randomIndex = Math.floor(Math.random() * playList.length)
+        }
+        currentSongIndex = randomIndex
+        break
+      default:
+        currentSongIndex += tag
+        if (currentSongIndex < 0) currentSongIndex = playList.length - 1
+        if (currentSongIndex > playList.length - 1) currentSongIndex = 0
+    }
+
+    dispatch(changeCurrentSongIndexAction(currentSongIndex))
+    dispatch(changeCurrentSongAction(playList[currentSongIndex]))
+  }
+}
 
 
 export const getSongDetailAction = (ids) => {

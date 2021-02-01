@@ -5,7 +5,11 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import { Slider } from 'antd'
 import { PlaybarWrapper } from './style'
 
-import { getSongDetailAction, changeSequence } from '../store/actionCreators'
+import { 
+  getSongDetailAction,
+  changeSequence,
+  changeCurrentIndexAndSongAction
+} from '../store/actionCreators'
 import { formatMinuteSecond, getPlaySong } from '@/utils/format-utils'
 
 
@@ -16,7 +20,7 @@ function AppPlayBar() {
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
 
-  const { currentSong, sequence, playList } = useSelector((state) => {
+  const { currentSong, sequence } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
       playList: state.getIn(['player', 'playList']),
@@ -32,11 +36,16 @@ function AppPlayBar() {
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id)
+    // 浏览器一加载完成的时候，直接 play() 是会报错的 
+    audioRef.current.play().then(res => {
+      setIsPlaying(true)
+    }).catch(err => {
+      setIsPlaying(false)
+    })
   }, [currentSong])
 
   // other handle
   const duration = currentSong.dt || 0
-  console.log(currentSong, 'playList')
 
   // handle function
   const playMusic = useCallback(() => {
@@ -77,22 +86,26 @@ function AppPlayBar() {
     }
   }, [duration, isPlaying, playMusic])
 
-  const handleChangeSequence = useCallback(() => {
+  const handleChangeSequence = () => {
     // sequence = 0, 1, 2
     let newSequence = sequence + 1
     if (newSequence === 3) {
       newSequence = 0
     }
     dispatch(changeSequence(newSequence))
-  }, [sequence, dispatch])
+  }
+
+  const changeSong = (tag) => {
+    dispatch(changeCurrentIndexAndSongAction(tag))
+  }
 
   return (
     <PlaybarWrapper className="sprite_player" isPlaying={isPlaying} sequence={sequence}>
       <div className="content wrap-v2">
         <div className="control-box">
-          <button className="sprite_player prev"></button>
+          <button className="sprite_player prev" onClick={ e => changeSong(-1) }></button>
           <button className="sprite_player play" onClick={ e => playMusic() }></button>
-          <button className="sprite_player next"></button>
+          <button className="sprite_player next" onClick={ e => changeSong(1) }></button>
         </div>
         <div className="play-info">
           <div className="image">
