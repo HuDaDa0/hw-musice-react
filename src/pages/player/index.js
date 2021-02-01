@@ -1,12 +1,13 @@
 import React, { memo } from 'react'
 
+import { PlayerWrapper } from './style'
 
 function Player() {
 
   return (
-    <div>
+    <PlayerWrapper>
       Player
-    </div>
+    </PlayerWrapper>
   )
 }
 
