@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState, useCallback } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
@@ -11,7 +11,7 @@ import { formatMinuteSecond, getPlaySong } from '@/utils/format-utils'
 
 function AppPlayBar() {
 
-  const [isPlaying, setisPlaying] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
@@ -37,14 +37,14 @@ function AppPlayBar() {
 
  
   // handle function
-  const playMusic = () => {
+  const playMusic = useCallback(() => {
     if (isPlaying) {
       audioRef.current.pause()
     } else {
       audioRef.current.play()
     }
-    setisPlaying(!isPlaying)
-  }
+    setIsPlaying(!isPlaying)
+  }, [isPlaying])
 
   const timeUpdate = (e) => {
     // 加一个 isChanging 判断当前 进度条 是否在拖动
@@ -58,13 +58,13 @@ function AppPlayBar() {
     }
   }
 
-  const changeProgress = (value) => {
+  const changeProgress = useCallback((value) => {
     setCurrentTime(value / 100 * duration / 1000)
     setProgress(value)
     setIsChanging(true)
-  }
+  }, [duration])
 
-  const afterChange = (value) => {
+  const afterChange = useCallback((value) => {
     const currentTime = value / 100 * duration / 1000
     audioRef.current.currentTime = currentTime
     // setCurrentTime(currentTime)
@@ -73,7 +73,7 @@ function AppPlayBar() {
     if (!isPlaying) {
       playMusic()
     }
-  }
+  }, [duration, isPlaying, playMusic])
 
 
   return (
