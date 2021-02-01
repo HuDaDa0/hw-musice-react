@@ -35,8 +35,10 @@ export const getSongDetailAction = (ids) => {
       dispatch(changeCurrentSongAction(song))
     } else {
       getSongDetail(ids).then(res => {
-        const newPlayList = [...playList, res.songs[0]]
-        dispatch(changeCurrentSongAction(res.songs[0]))
+        let song = res.songs[0]
+        if (!song) return 
+        const newPlayList = [...playList, song]
+        dispatch(changeCurrentSongAction(song))
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1))
         dispatch(changePlayListAction(newPlayList))
       })

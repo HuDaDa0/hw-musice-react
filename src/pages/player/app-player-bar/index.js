@@ -16,9 +16,10 @@ function AppPlayBar() {
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
 
-  const { currentSong } = useSelector((state) => {
+  const { currentSong, playList } = useSelector((state) => {
     return {
-      currentSong: state.getIn(['player', 'currentSong'])
+      currentSong: state.getIn(['player', 'currentSong']),
+      playList: state.getIn(['player', 'playList'])
     }
   }, shallowEqual)
   const dispatch = useDispatch()
@@ -34,8 +35,8 @@ function AppPlayBar() {
 
   // other handle
   const duration = currentSong.dt || 0
+  console.log(currentSong, 'playList')
 
- 
   // handle function
   const playMusic = useCallback(() => {
     if (isPlaying) {

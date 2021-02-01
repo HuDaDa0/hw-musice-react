@@ -1,11 +1,21 @@
 import React, { memo } from 'react'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { TopRankingWrapper } from './style'
+import { getSongDetailAction } from '@/pages/player/store/actionCreators'
 
 
 function TopRanking(props) {
   const { id, name, coverImgUrl, tracks } = props
+
+  const dispatch = useDispatch()
+
+  const playMusic = (id) => {
+    // 1496833377 半城烟沙 (合唱版)
+    // 1496822949 囍（女生版）
+    dispatch(getSongDetailAction(id))
+  }
 
   return (
     <TopRankingWrapper>
@@ -32,7 +42,7 @@ function TopRanking(props) {
                   <span className="song-name">{item.name}</span>
                 </span>
                 <div className="operate">
-                  <span className="btn sprite_02 play"></span>
+                  <span className="btn sprite_02 play" onClick={ e => playMusic(1496833377) }></span>
                   <button className="btn sprite_icon2 addto"></button>
                   <button className="btn sprite_02 favor"></button>
                 </div>
