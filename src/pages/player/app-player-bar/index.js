@@ -47,6 +47,10 @@ function AppPlayBar() {
   }
 
   const timeUpdate = (e) => {
+    // 加一个 isChanging 判断当前 进度条 是否在拖动
+    // 如果在拖动，isChanging = true  就不会进行时间更新，而是走 afterChange 函数
+    // 因为 afterChange 会拿到进度条的进度时间，而 timeUpdate 拿到的是当前音乐播放的下一秒
+    // 这样就会出现进度条的闪动
     if (!isChanging) {
       const currentTime = e.target.currentTime
       setCurrentTime(currentTime)
@@ -66,7 +70,9 @@ function AppPlayBar() {
     // setCurrentTime(currentTime)
     // setProgress(value)
     setIsChanging(false)
-    // playMusic()
+    if (!isPlaying) {
+      playMusic()
+    }
   }
 
 
