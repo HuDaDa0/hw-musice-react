@@ -40,7 +40,7 @@ function AppPlayBar() {
   }, [dispatch])
 
   useEffect(() => {
-    audioRef.current.src = getPlaySong(currentSong.id)
+    currentSong.id && (audioRef.current.src = getPlaySong(currentSong.id))
     currentSong.id && dispatch(getLyricAction(currentSong.id))
     // 浏览器一加载完成的时候，直接 play() 是会报错的 
     audioRef.current.play().then(res => {
