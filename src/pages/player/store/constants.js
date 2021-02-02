@@ -7,3 +7,7 @@ export const CHANGE_CURRENT_SONG_INDEX = 'player/CHANGE_CURRENT_SONG_INDEX'
 
 export const CHANGE_SEQUENCE = 'player/SEQUENCE'
 
+export const CHANGE_LYRIC = 'player/CHANGE_LYRIC'
+
+export const CHANGE_CURRENT_LYRIC_INDEX = 'player/CHANGE_CURRENT_LYRIC_INDEX'
+

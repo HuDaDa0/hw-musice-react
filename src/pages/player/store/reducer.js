@@ -4,7 +4,9 @@ import {
   CHANGE_CURRENT_SONG,
   CHANGE_PLAY_LIST,
   CHANGE_CURRENT_SONG_INDEX,
-  CHANGE_SEQUENCE
+  CHANGE_SEQUENCE,
+  CHANGE_LYRIC,
+  CHANGE_CURRENT_LYRIC_INDEX
 } from './constants'
 
 
@@ -260,7 +262,9 @@ const defaultState = Map({
   ],
   currentSongIndex: 0,
   currentSong: {},
-  sequence: 0
+  sequence: 0,
+  lyricList: [],
+  currentLyricIndex: 0
 })
 
 function reducer(state = defaultState, action) {
@@ -273,6 +277,10 @@ function reducer(state = defaultState, action) {
       return state.set('currentSongIndex', action.data)
     case CHANGE_SEQUENCE:
       return state.set('sequence', action.data)
+    case CHANGE_LYRIC:
+      return state.set('lyricList', action.data)
+    case CHANGE_CURRENT_LYRIC_INDEX:
+      return state.set('currentLyricIndex', action.data)
     default:
       return state
   }

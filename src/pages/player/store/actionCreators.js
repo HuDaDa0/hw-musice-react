@@ -2,9 +2,13 @@ import {
   CHANGE_CURRENT_SONG, 
   CHANGE_PLAY_LIST, 
   CHANGE_CURRENT_SONG_INDEX, 
-  CHANGE_SEQUENCE 
+  CHANGE_SEQUENCE,
+  CHANGE_LYRIC,
+  CHANGE_CURRENT_LYRIC_INDEX
 } from './constants'
-import { getSongDetail } from '@/services/player'
+import { getSongDetail, getLyric } from '@/services/player'
+
+import { parseLyric } from '@/utils/parse-lyric'
 
 
 const changeCurrentSongAction = (res) => {
@@ -25,6 +29,13 @@ const changeCurrentSongIndexAction = (index) => {
   return {
     type: CHANGE_CURRENT_SONG_INDEX,
     data: index
+  }
+}
+
+const changeLyricAction = (lyricList) => {
+  return {
+    type: CHANGE_LYRIC,
+    data: lyricList
   }
 }
 
@@ -61,6 +72,12 @@ export const changeCurrentIndexAndSongAction = (tag) => {
   }
 }
 
+export const changeCurrentLyricIndexAction = (index) => {
+  return {
+    type: CHANGE_CURRENT_LYRIC_INDEX,
+    data: index
+  }
+}
 
 export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {
@@ -85,4 +102,13 @@ export const getSongDetailAction = (ids) => {
 } 
 
 
+export const getLyricAction = (ids) => {
+  return dispatch => {
+    getLyric(ids).then(res => {
+      const lyric = res.lrc.lyric
+      const lyricList = parseLyric(lyric)
+      dispatch(changeLyricAction(lyricList))
+    }).catch(err => {})
+  }
+}
 
