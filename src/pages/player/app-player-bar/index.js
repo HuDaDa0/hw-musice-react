@@ -99,6 +99,15 @@ function AppPlayBar() {
     dispatch(changeCurrentIndexAndSongAction(tag))
   }
 
+  const handleAudioEnd = (e) => {
+    if (sequence === 2) {  // 单曲循环
+      audioRef.current.currentTime = 0
+      audioRef.current.play()
+    } else {
+      dispatch(changeCurrentIndexAndSongAction(1))
+    }
+  }
+
   return (
     <PlaybarWrapper className="sprite_player" isPlaying={isPlaying} sequence={sequence}>
       <div className="content wrap-v2">
@@ -146,7 +155,7 @@ function AppPlayBar() {
           </div>
         </div>
       </div>
-      <audio ref={audioRef} onTimeUpdate={ e => timeUpdate(e) }></audio>
+      <audio ref={audioRef} onTimeUpdate={ e => timeUpdate(e) } onEnded={ e => handleAudioEnd(e) }></audio>
     </PlaybarWrapper>
   )
 }
