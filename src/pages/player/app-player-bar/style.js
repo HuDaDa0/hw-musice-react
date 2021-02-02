@@ -133,10 +133,12 @@ export const PlaybarWrapper = styled.div`
         background-position: -147px -248px;
         
         .volume {
+          vertical-align: middle;
           background-position: -2px -248px;
         }
 
         .loop {
+          vertical-align: middle;
           background-position: ${props => {
             switch(props.sequence) {
               case 1:
@@ -152,6 +154,9 @@ export const PlaybarWrapper = styled.div`
         .playlist {
           width: 59px;
           background-position: -42px -68px;
+          color: #fff;
+          text-indent: 10px;
+          vertical-align: middle;
         }
       }
     }

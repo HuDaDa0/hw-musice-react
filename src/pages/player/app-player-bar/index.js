@@ -20,7 +20,7 @@ function AppPlayBar() {
   const [progress, setProgress] = useState(0)
   const [isChanging, setIsChanging] = useState(false)
 
-  const { currentSong, sequence } = useSelector((state) => {
+  const { currentSong, sequence, playList } = useSelector((state) => {
     return {
       currentSong: state.getIn(['player', 'currentSong']),
       playList: state.getIn(['player', 'playList']),
@@ -151,7 +151,7 @@ function AppPlayBar() {
           <div className="right sprite_player">
             <button className="sprite_player btn volume"></button>
             <button className="sprite_player btn loop" onClick={ handleChangeSequence }></button>
-            <button className="sprite_player btn playlist"></button>
+            <button className="sprite_player btn playlist">{playList.length}</button>
           </div>
         </div>
       </div>
