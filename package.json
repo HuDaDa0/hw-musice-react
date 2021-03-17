@@ -2,7 +2,7 @@
   "name": "hw-music-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://hudada0.github.io/hw-musice-react",
+  "homepage": ".",
   "dependencies": {
     "@craco/craco": "^6.0.0",
     "@testing-library/jest-dom": "^5.11.4",
