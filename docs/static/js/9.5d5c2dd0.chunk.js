@@ -1,0 +1,2 @@
+(this["webpackJsonphw-music-react"]=this["webpackJsonphw-music-react"]||[]).push([[9],{175:function(c,t,e){"use strict";e.r(t);var s=e(4),i=e(0);function n(){return Object(s.jsx)("div",{children:"Song"})}t.default=Object(i.memo)(n)}}]);
+//# sourceMappingURL=9.5d5c2dd0.chunk.js.map
